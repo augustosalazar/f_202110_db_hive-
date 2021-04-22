@@ -1,3 +1,4 @@
+import 'package:dartz/dartz.dart';
 import 'package:f_202110_simple_db_webservice/data/models/user_model.dart';
 import 'package:f_202110_simple_db_webservice/data/models/userdb.dart';
 import 'package:hive/hive.dart';
@@ -10,6 +11,28 @@ class UserLocalDataSource {
         country: user.city,
         email: user.email,
         picture: user.picture));
+  }
+
+  Future<List<UserModel>> getUsers() async {
+    return Hive.box('users').values.map<UserModel>((e) {
+      return UserModel(
+          name: e.name, city: e.country, email: e.email, picture: e.picture);
+    }).toList();
+  }
+
+  Stream<List<UserModel>> getUserStream() {
+    Hive.box('users').watch().map(
+          (_) => right<NotebookFailure, List<UserModel>>(
+            Hive.box('users')
+                .values
+                .map((e) => UserModel(
+                    name: e.name,
+                    city: e.country,
+                    email: e.email,
+                    picture: e.picture))
+                .toList(),
+          ),
+        );
   }
 
   deleteAll() async {
@@ -33,3 +56,5 @@ class UserLocalDataSource {
             picture: user.picture));
   }
 }
+
+class NotebookFailure {}

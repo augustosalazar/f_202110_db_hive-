@@ -3,11 +3,11 @@ import 'package:f_202110_simple_db_webservice/data/models/user_model.dart';
 import 'datasource/user_local_data_source.dart';
 import 'datasource/user_remote_data_source.dart';
 
-class UserRespository {
+class UserRepository {
   UserRemoteDatatasource userRemoteDatatasource;
   UserLocalDataSource userLocalDataSource;
 
-  UserRespository() {
+  UserRepository() {
     userRemoteDatatasource = UserRemoteDatatasource();
     userLocalDataSource = UserLocalDataSource();
   }
@@ -27,5 +27,14 @@ class UserRespository {
 
   deleteUser(index) async {
     await userLocalDataSource.deleteUser(index);
+  }
+
+  Future<List<UserModel>> getUsers() async {
+    final users = await userLocalDataSource.getUsers();
+    return users;
+  }
+
+  Stream<List<UserModel>> getUserStream() async* {
+    userLocalDataSource.getUserStream();
   }
 }

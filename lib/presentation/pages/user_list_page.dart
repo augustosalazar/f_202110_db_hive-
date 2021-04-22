@@ -27,7 +27,45 @@ class UserListPage extends StatelessWidget {
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
-        child: Container(child: dbList()),
+        child: dbList(),
+
+        // child: GetBuilder<UserController>(
+        //     builder: (_) => FutureBuilder<List<UserModel>>(
+        //           future: userController.getUsers(),
+        //           builder: (context, snapshot) {
+        //             print("got new values.");
+        //             if (snapshot.hasData) {
+        //               return Text('${userController.users.length}');
+        //             }
+        //             return Text('...');
+        //           },
+        //         )),
+        //
+        //
+
+        // child: StreamBuilder(
+        //   stream: userController.getUserStream(),
+        //   builder: (context, snapshot) {
+        //     if (!snapshot.hasData) {
+        //       return Text("loading");
+        //     }
+        //     List<UserModel> data = snapshot.data;
+        //     return Text('${data.length}');
+        //   },
+        // )
+
+        // child: GetX<UserController>(builder: (controller) {
+        //   return FutureBuilder<List<UserModel>>(
+        //     future: controller.getUsers(),
+        //     builder: (context, snapshot) {
+        //       print("got new values.");
+        //       if (snapshot.hasData) {
+        //         return Text('${controller.users.length}');
+        //       }
+        //       return Text('...');
+        //     },
+        //   );
+        // })
       ),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
@@ -49,9 +87,19 @@ class UserListPage extends StatelessWidget {
             final user = userBox.getAt(index) as UserDB;
             final userM = UserModel.fromDB(user);
             return ListItem(userM, index);
-            //return Text(userM.name);
           },
         );
+      },
+    );
+  }
+
+  Widget dbList2(data) {
+    print("dbList2 ${data.length}");
+    return ListView.builder(
+      itemCount: data.length,
+      itemBuilder: (context, index) {
+        final user = data[index];
+        return ListItem(user, index);
       },
     );
   }

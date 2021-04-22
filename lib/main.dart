@@ -20,7 +20,7 @@ Future<List<Box>> _openBox() async {
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await _openBox();
-  Get.put(UserRespository());
+  Get.put(UserRepository());
   Get.put(UserController());
   runApp(Home());
 }
