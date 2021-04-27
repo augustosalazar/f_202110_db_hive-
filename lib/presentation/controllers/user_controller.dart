@@ -10,7 +10,6 @@ class UserController extends GetxController {
   onInit() {
     super.onInit();
     getUsers();
-    getUserStream2();
   }
 
   addUser() async {
@@ -44,12 +43,6 @@ class UserController extends GetxController {
     return rta;
   }
 
-  Stream<List<UserModel>> getUserStream2() async* {
-    UserRepository repository = Get.find();
-    repository.getUserStream().listen((event) {
-      print("EVENT");
-    });
-  }
 
   Stream<List<UserModel>> getUserStream() async* {
     UserRepository repository = Get.find();

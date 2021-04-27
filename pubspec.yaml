@@ -24,8 +24,8 @@ dependencies:
   flutter:
     sdk: flutter
   get: ^4.1.1
-  hive: ^2.0.1
-  hive_flutter: ^1.0.0
+  hive:
+  hive_flutter:
   http: ^0.13.1
   dartz: ^0.9.2
 
@@ -37,8 +37,9 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  hive_generator: ^1.0.1
-  build_runner: ^1.12.2
+  hive_generator: 
+  build_runner: 
+  integration_test:
   
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

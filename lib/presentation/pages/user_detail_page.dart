@@ -51,6 +51,7 @@ class _UserDetailPageState extends State<UserDetailPage> {
             height: 20,
           ),
           TextField(
+              key: Key('TextFieldCity'),
               controller: controllerCity,
               decoration: InputDecoration(
                 filled: true,
